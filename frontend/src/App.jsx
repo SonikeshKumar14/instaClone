@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ChatPage from "./components/ChatPage";
-import EditProfile from "./components/editProfile";
+import EditProfile from "./components/EditProfile";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import MainLayout from "./components/MainLayout";
