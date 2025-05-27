@@ -28,7 +28,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({extended:true}));
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: [
+        'http://localhost:5173',
+        'https://instaclone-t1os.onrender.com',
+    ],
     credentials: true
 };
 app.use(cors(corsOptions));
