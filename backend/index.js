@@ -27,14 +27,35 @@ app.get("/", (_, res) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(urlencoded({extended:true}));
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://instaclone-t1os.onrender.com',
+];
+
 const corsOptions = {
-    origin: [
-        'http://localhost:5173',
-        'https://instaclone-t1os.onrender.com',
-    ],
-    credentials: true
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // Allow requests like Postman or curl with no origin
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 };
+
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+// const corsOptions = {
+//     origin: [
+//         'http://localhost:5173',
+//         'https://instaclone-t1os.onrender.com',
+//     ],
+//     credentials: true
+// };
+// app.use(cors(corsOptions));
 
 // yha par apni api ayengi
 app.use("/api/v1/user", userRoute);
