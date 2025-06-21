@@ -34,6 +34,7 @@ const allowedOrigins = [
 ];
 
 const corsOptions = {
+<<<<<<< HEAD
   origin: function (origin, callback) {
     if (!origin) return callback(null, true); // Allow requests like Postman or curl with no origin
     if (allowedOrigins.indexOf(origin) !== -1) {
@@ -43,6 +44,10 @@ const corsOptions = {
     }
   },
   credentials: true,
+=======
+    origin: process.env.URL,
+    credentials: true
+>>>>>>> ede4d5c (url changes)
 };
 
 app.use(cors(corsOptions));
